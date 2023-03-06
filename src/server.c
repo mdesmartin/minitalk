@@ -6,22 +6,27 @@
 /*   By: mehdidesmartin <mehdidesmartin@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 15:00:35 by mvogel            #+#    #+#             */
-/*   Updated: 2023/03/06 12:47:08 by mehdidesmar      ###   ########lyon.fr   */
+/*   Updated: 2023/03/06 21:42:03 by mehdidesmar      ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "../libft/libft.h"
+#include <signal.h>
+#include <stdbool.h>
 
-void	client_pid(t_bit *bit, int bin)
+typedef struct s_bit
 {
-	if (bit->status == false)
-		bit->pid_client += bin << bit->i;
-	if (bit->status == false && bit->i == 32)
-	{
-		bit->status = true;
-		bit->value = 0;
-		bit->i = 0;
-	}
+	unsigned char	value;
+	int				i;
+	bool			status;
+	int				pid_client;
+}	t_bit;
+
+void	client_pid(t_bit *bit)
+{
+	bit->status = true;
+	bit->value = 0;
+	bit->i = 0;
 }
 
 void	write_msg(t_bit *bit)
@@ -29,8 +34,8 @@ void	write_msg(t_bit *bit)
 	write(1, &(bit->value), 1);
 	if (bit->value == 0)
 	{
-		bit->status = false;//up
 		kill(bit->pid_client, SIGUSR1);
+		bit->status = false;
 		bit->pid_client = 0;
 	}
 	bit->value = 0;
@@ -48,8 +53,10 @@ void	get_bit(int sigusr)
 		bin = 1;
 	bit.value += bin << bit.i;
 	if (bit.status == false)
-		client_pid(&bit, bin);
+		bit.pid_client += bin << bit.i;
 	bit.i++;
+	if (bit.status == false && bit.i == 32)
+		client_pid(&bit);
 	if (bit.status == true && bit.i == 8)
 		write_msg(&bit);
 }

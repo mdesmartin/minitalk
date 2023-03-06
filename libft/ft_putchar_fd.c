@@ -1,32 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/16 15:00:35 by mvogel            #+#    #+#             */
-/*   Updated: 2023/02/16 16:12:23 by mvogel           ###   ########lyon.fr   */
+/*   Created: 2022/11/14 10:40:39 by mvogel            #+#    #+#             */
+/*   Updated: 2023/01/16 16:32:42 by mvogel           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <signal.h>
-#include <sys/types.h>
-#include <unistd.h>
+#include "libft.h"
 
-#include <stdio.h>
-
-int	main()
-{	
-	sigset_t	*set;
-	struct sigaction oldact;
-	struct sigaction act;
-
-	act = printf("Yes");
-	sigemptyset(set);
-	// sigaddset(set, int);
-	sigaction(SIGUSR1, act, oldact);
+int	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
+	return (0);
 }
-
-
-// renvoi getpid la premiere fois qyon le lance puis ensuite traduis ce auil recois et lafiche

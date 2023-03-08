@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mehdidesmartin <mehdidesmartin@student.    +#+  +:+       +#+        */
+/*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 15:00:35 by mvogel            #+#    #+#             */
-/*   Updated: 2023/03/06 21:42:03 by mehdidesmar      ###   ########lyon.fr   */
+/*   Updated: 2023/03/08 17:07:36 by mvogel           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	get_bit(int sigusr)
 {
 	static t_bit	bit;
 	bool			bin;
-	
+
 	if (sigusr == SIGUSR1)
 		bin = 0;
 	if (sigusr == SIGUSR2)
@@ -66,6 +66,7 @@ int	main(int argc, char **argv)
 	struct sigaction	sign;
 
 	sign.sa_handler = get_bit;
+	
 
 	if (argc != 1 && argv[0][0] != '\0')
 		return (ft_putstr_fd("Error\nServer does not take parameters", 2), -1);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mehdidesmartin <mehdidesmartin@student.    +#+  +:+       +#+         #
+#    By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/06 22:41:22 by mehdidesmar       #+#    #+#              #
-#    Updated: 2023/03/06 22:41:25 by mehdidesmar      ###   ########lyon.fr    #
+#    Updated: 2023/03/07 09:40:33 by mvogel           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ NAME_C = client
 
 SRC_PATH = src/
 SRC_LST_S = server.c
-SRC_LST_S = server.c
+SRC_LST_C = client.c
 SRC_S = $(addprefix $(SRC_PATH), $(SRC_LST_S))
 SRC_C = $(addprefix $(SRC_PATH), $(SRC_LST_C))
 

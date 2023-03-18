@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mehdidesmartin <mehdidesmartin@student.    +#+  +:+       +#+        */
+/*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 16:27:17 by mvogel            #+#    #+#             */
-/*   Updated: 2023/03/03 13:19:24 by mehdidesmar      ###   ########lyon.fr   */
+/*   Updated: 2023/03/18 17:19:02 by mvogel           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,5 @@ int	ft_atoi(const char *str)
 		res = res * 10 + ((str[i] - 48) * sign);
 		i++;
 	}
-	
 	return (res);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi_long.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mehdidesmartin <mehdidesmartin@student.    +#+  +:+       +#+        */
+/*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:51:19 by mvogel            #+#    #+#             */
-/*   Updated: 2023/03/03 13:20:22 by mehdidesmar      ###   ########lyon.fr   */
+/*   Updated: 2023/03/18 16:45:59 by mvogel           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,9 @@ long int	ft_atoi_long(const char *str)
 	sign = 1;
 	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
 		i++;
-	if (str[i] == '+')
-		i++;
-	else if (str[i] == '-')
-	{
+	if (str[i] == '-')
 		sign = -1;
-		i++;
-	}
+	i++;
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		if (res != ((res * 10) + ((str[i] - 48) * sign)) / 10)

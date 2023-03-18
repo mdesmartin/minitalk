@@ -6,7 +6,7 @@
 /*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 15:00:35 by mvogel            #+#    #+#             */
-/*   Updated: 2023/03/08 17:07:36 by mvogel           ###   ########lyon.fr   */
+/*   Updated: 2023/03/18 12:55:41 by mvogel           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,11 @@ int	main(int argc, char **argv)
 	struct sigaction	sign;
 
 	sign.sa_handler = get_bit;
-	
+	sigemptyset(&sign.sa_mask);
+	sign.sa_flags = SA_SIGINFO;	
 
 	if (argc != 1 && argv[0][0] != '\0')
-		return (ft_putstr_fd("Error\nServer does not take parameters", 2), -1);
+		return (ft_putstr_fd("Error\nServer does not take parameters\n", 2), -1);
 	ft_printf("Server PID is : %d\n", getpid());
 	while (1)
 	{

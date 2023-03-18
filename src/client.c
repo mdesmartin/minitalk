@@ -6,7 +6,7 @@
 /*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 14:29:25 by mvogel            #+#    #+#             */
-/*   Updated: 2023/03/08 17:51:10 by mvogel           ###   ########lyon.fr   */
+/*   Updated: 2023/03/18 12:58:47 by mvogel           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,15 @@ int	main(int argc, char *argv[])
 
 	i = 0;
 	sign.sa_handler = confirm_reception;
-	// sign.sa_sigaction = NULL;
-	// sigemptyset(&sign.sa_mask);
-	// sign.sa_flags = 0;
+	sigemptyset(&sign.sa_mask);
+	sign.sa_flags = SA_SIGINFO;
 
 	if (argc != 3)
-		return (ft_putstr_fd("Error\nClient need server PID and a string", \
+		return (ft_putstr_fd("Error\nClient need server PID and a string\n", \
 		2), -1);
 	pid_server = ft_atoi(argv[1]);
 	if (kill(pid_server, 0) != 0)
-		return (ft_putstr_fd("Error\nServer PID is not correct", 2), -1);
+		return (ft_putstr_fd("Error\nServer PID is not correct\n", 2), -1);
 	sigaction(SIGUSR1, &sign, NULL);
 	send_bit(getpid(), pid_server, 32);
 	while (argv[2] != NULL && argv[2][i] != 0)
@@ -60,26 +59,3 @@ int	main(int argc, char *argv[])
 	pause();
 	return (0);
 }
-
-
-
-
-	t_list	**cmd;
-	struct sigaction sign = { 0 };
-	char	*input;
-
-	sign.sa_handler = get_signal;
-	// sign.sa_sigaction = NULL;
-	sigemptyset(&sign.sa_mask);
-	// sign.sa_flags = 0;
-
-
-	// while (bit != 0)
-	// {
-	// 	if (val >> bit & 0)
-	// 		kill(pid_server, SIGUSR1);
-	// 	else
-	// 		kill(pid_server, SIGUSR2);
-	// 	bit--;
-	// 	usleep(100);
-	// }

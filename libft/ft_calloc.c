@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvogel <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mehdidesmartin <mehdidesmartin@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 13:58:07 by mvogel            #+#    #+#             */
-/*   Updated: 2022/11/11 13:58:15 by mvogel           ###   ########lyon.fr   */
+/*   Updated: 2023/03/19 20:35:09 by mehdidesmar      ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	*ft_calloc(size_t count, size_t size)
 		return (NULL);
 	i = 0;
 	len = count * size;
-	str = malloc(sizeof(char) * len);
+	str = malloc(len);
 	if (!(str))
-		return (0);
+		return (NULL);
 	while (i < len)
 	{
 		str[i] = '\0';

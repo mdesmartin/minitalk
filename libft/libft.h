@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: mehdidesmartin <mehdidesmartin@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 14:34:42 by mvogel            #+#    #+#             */
-/*   Updated: 2023/02/28 10:57:35 by mvogel           ###   ########lyon.fr   */
+/*   Updated: 2023/03/19 21:07:34 by mehdidesmar      ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,7 @@ char		*read_n_join(char *stash, int fd);
 char		*fill(char *stash, char *line);
 char		*clean(char *stash);
 char		*add_to_stash(char *stash, char *buffer);
+
+void		*ft_realloc(void *ptr, size_t size);
 
 #endif

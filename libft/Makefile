@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+         #
+#    By: mehdidesmartin <mehdidesmartin@student.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/17 13:20:33 by mvogel            #+#    #+#              #
-#    Updated: 2023/02/08 15:56:32 by mvogel           ###   ########lyon.fr    #
+#    Updated: 2023/03/19 21:07:52 by mehdidesmar      ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,8 @@ SRC = ft_atoi.c \
 	ft_printf.c \
 	ft_printf_utils.c \
 	get_next_line.c \
-	ft_free_tab.c
+	ft_free_tab.c \
+	ft_realloc.c
 
 OBJ = $(SRC:.c=.o)
 

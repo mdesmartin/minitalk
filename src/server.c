@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: mehdidesmartin <mehdidesmartin@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 15:00:35 by mvogel            #+#    #+#             */
-/*   Updated: 2023/03/18 17:59:40 by mvogel           ###   ########lyon.fr   */
+/*   Updated: 2023/03/19 23:10:41 by mehdidesmar      ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,49 +23,23 @@ typedef struct s_bit
 	int				buff_size;
 }	t_bit;
 
-
-//get a bit and add it at [i] in str message, and when buff is full calloc 1x more space
-// void	get_message(t_bit *bit)
-// {
-// 	char	*tmp;
-
-// 	if (!bit->message)
-// 	{
-// 		bit->message = ft_calloc(1024, sizeof(char));
-// 		bit->buff_size = 1;
-// 	}
-// 	if (bit->j >= (1024 * bit->buff_size))
-// 	{
-// 		bit->buff_size += 1;
-// 		tmp = ft_calloc(1024 * bit->buff_size, sizeof(char));
-// 		bit->message = ft_strjoin(bit->message, tmp);
-// 		free(tmp);
-// 	}
-// 	bit->message[bit->j] = bit->value;
-// 	bit->j++;
-// }
-//malloc(): corrupted top size
-
 void	get_message(t_bit *bit)
 {
-	char	*tmp;
-
-	if (!bit->message)
+	// if (bit->j == 0)
+	// 	bit->message = ft_calloc(1, 1);
+	if (bit->j >= bit->buff_size - 1)
 	{
-		bit->message = ft_calloc(1024, sizeof(char));
-		bit->buff_size = 1;
-	}
-	if (bit->j >= (1024 * bit->buff_size))
-	{
-		bit->buff_size++;
-		tmp = ft_calloc(1024, sizeof(char));
-		bit->message = ft_strjoin(bit->message, tmp);
-		free(tmp);
+		bit->buff_size += 1024;
+		bit->message = ft_realloc(bit->message, bit->buff_size);
+		if (!bit->message)
+		{
+			ft_putstr_fd("Error\nMemory allocation failed\n", 2);
+			exit(1);
+		}
 	}
 	bit->message[bit->j] = bit->value;
 	bit->j++;
 }
-
 
 void	get_bit(int signum, siginfo_t *info, void *contex)
 {
@@ -81,12 +55,13 @@ void	get_bit(int signum, siginfo_t *info, void *contex)
 	{
 		bit.i = 0;
 		get_message(&bit);
-		// write(1, &(bit.value), 1);
 		if (bit.value == 0)
 		{
 			ft_printf("%s", bit.message);
 			free(bit.message);
 			bit.message = NULL;
+			bit.buff_size = 0;
+			bit.j = 0;
 			kill(pid_client, SIGUSR2);
 		}
 		bit.value = 0;

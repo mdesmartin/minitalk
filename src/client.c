@@ -6,7 +6,7 @@
 /*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 14:29:25 by mvogel            #+#    #+#             */
-/*   Updated: 2023/03/18 17:17:58 by mvogel           ###   ########lyon.fr   */
+/*   Updated: 2023/03/21 13:59:12 by mvogel           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ int	main(int argc, char *argv[])
 	i = 0;
 	if (argc != 3)
 		return (ft_putstr_fd("Error\nClient need server PID and a string\n", \
-		2), -1);
+		2), 1);
 	pid_server = ft_atoi(argv[1]);
 	if (kill(pid_server, 0) != 0)
-		return (ft_putstr_fd("Error\nServer PID is not correct\n", 2), -1);
+		return (ft_putstr_fd("Error\nServer PID is not correct\n", 2), 1);
 	sigaction(SIGUSR1, &sign, NULL);
 	sigaction(SIGUSR2, &sign, NULL);
 	while (argv[2] != NULL && argv[2][i] != 0)

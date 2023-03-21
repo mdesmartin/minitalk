@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mehdidesmartin <mehdidesmartin@student.    +#+  +:+       +#+        */
+/*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 20:56:43 by mehdidesmar       #+#    #+#             */
-/*   Updated: 2023/03/21 13:20:50 by mehdidesmar      ###   ########lyon.fr   */
+/*   Updated: 2023/03/21 14:00:14 by mvogel           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	*ft_realloc(void *ptr, size_t size)
 {
 	void	*new_ptr;
-    size_t	old_size;
+	size_t	old_size;
 
 	new_ptr = NULL;
 	old_size = 0;

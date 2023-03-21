@@ -6,7 +6,7 @@
 /*   By: mehdidesmartin <mehdidesmartin@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 15:00:35 by mvogel            #+#    #+#             */
-/*   Updated: 2023/03/19 23:10:41 by mehdidesmar      ###   ########lyon.fr   */
+/*   Updated: 2023/03/21 13:40:12 by mehdidesmar      ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ typedef struct s_bit
 
 void	get_message(t_bit *bit)
 {
-	// if (bit->j == 0)
-	// 	bit->message = ft_calloc(1, 1);
 	if (bit->j >= bit->buff_size - 1)
 	{
 		bit->buff_size += 1024;

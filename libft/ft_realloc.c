@@ -6,7 +6,7 @@
 /*   By: mehdidesmartin <mehdidesmartin@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 20:56:43 by mehdidesmar       #+#    #+#             */
-/*   Updated: 2023/03/19 23:11:51 by mehdidesmar      ###   ########lyon.fr   */
+/*   Updated: 2023/03/21 13:20:50 by mehdidesmar      ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ void	*ft_realloc(void *ptr, size_t size)
 	old_size = 0;
 	if (ptr == NULL)
 	{
-		ft_printf("bon pour realloc");
-		new_ptr = malloc(size);
+		new_ptr = ft_calloc(1, size);
 		return (new_ptr);
 	}
 	if (size == 0)
@@ -33,7 +32,7 @@ void	*ft_realloc(void *ptr, size_t size)
 	old_size = ft_strlen(ptr);
 	if (size <= old_size)
 		return (ptr);
-	new_ptr = malloc(size);
+	new_ptr = ft_calloc(1, size);
 	if (new_ptr == NULL)
 		return (NULL);
 	ft_memcpy(new_ptr, ptr, old_size);

@@ -6,19 +6,19 @@
 /*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 14:29:25 by mvogel            #+#    #+#             */
-/*   Updated: 2023/03/21 13:59:12 by mvogel           ###   ########lyon.fr   */
+/*   Updated: 2023/03/21 14:30:51 by mvogel           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include <signal.h>
 
-int	g_bit_received;
+int	g_server_confirm;
 
 void	confirm_reception(int signum)
 {
 	if (signum == SIGUSR1)
-		g_bit_received = 1;
+		g_server_confirm = 1;
 	if (signum == SIGUSR2)
 	{
 		ft_putstr_fd("Message received\n", 1);
@@ -30,14 +30,14 @@ void	send_bit(unsigned int val, pid_t pid_server, int bit)
 {
 	while (bit != 0)
 	{
-		g_bit_received = 0;
+		g_server_confirm = 0;
 		if (val % 2 == 0)
 			kill(pid_server, SIGUSR1);
 		if (val % 2 == 1)
 			kill (pid_server, SIGUSR2);
 		val /= 2;
 		bit--;
-		while (!g_bit_received)
+		while (!g_server_confirm)
 			pause();
 	}
 }

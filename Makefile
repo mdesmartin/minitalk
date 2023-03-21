@@ -6,7 +6,7 @@
 #    By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/06 22:41:22 by mehdidesmar       #+#    #+#              #
-#    Updated: 2023/03/07 09:40:33 by mvogel           ###   ########lyon.fr    #
+#    Updated: 2023/03/21 14:34:04 by mvogel           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,5 +69,5 @@ fclean : clean
 re : fclean
 	$(MAKE) all
 
-.PHONY: all libft mlx_linux clean fclean re FORCE
+.PHONY: all libft NAME_C NAME_S FORCE clean fclean re
  

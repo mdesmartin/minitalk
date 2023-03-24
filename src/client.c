@@ -6,7 +6,7 @@
 /*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 14:29:25 by mvogel            #+#    #+#             */
-/*   Updated: 2023/03/21 14:30:51 by mvogel           ###   ########lyon.fr   */
+/*   Updated: 2023/03/24 15:46:18 by mvogel           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,19 @@ void	confirm_reception(int signum)
 
 void	send_bit(unsigned int val, pid_t pid_server, int bit)
 {
-	while (bit != 0)
+	int	i;
+
+	i = 0;
+	while (i < bit)
 	{
 		g_server_confirm = 0;
-		if (val % 2 == 0)
-			kill(pid_server, SIGUSR1);
-		if (val % 2 == 1)
+		if (val >> i & 1)
 			kill (pid_server, SIGUSR2);
-		val /= 2;
-		bit--;
+		else
+			kill(pid_server, SIGUSR1);
+		i++;
 		while (!g_server_confirm)
-			pause();
+			usleep(1);
 	}
 }
 
@@ -49,6 +51,8 @@ int	main(int argc, char *argv[])
 	int					i;
 
 	sigemptyset(&sign.sa_mask);
+	sigaddset(&sign.sa_mask, SIGUSR1);
+	sigaddset(&sign.sa_mask, SIGUSR2);
 	sign.sa_flags = SA_SIGINFO;
 	sign.sa_handler = confirm_reception;
 	i = 0;
@@ -56,10 +60,10 @@ int	main(int argc, char *argv[])
 		return (ft_putstr_fd("Error\nClient need server PID and a string\n", \
 		2), 1);
 	pid_server = ft_atoi(argv[1]);
-	if (kill(pid_server, 0) != 0)
-		return (ft_putstr_fd("Error\nServer PID is not correct\n", 2), 1);
 	sigaction(SIGUSR1, &sign, NULL);
-	sigaction(SIGUSR2, &sign, NULL);
+	sigaction(SIGUSR2, &sign, NULL);	
+	int size = ft_strlen(argv[2]);
+	send_bit(size, pid_server, 32);
 	while (argv[2] != NULL && argv[2][i] != 0)
 		send_bit(argv[2][i++], pid_server, 8);
 	send_bit(0, pid_server, 8);

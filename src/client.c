@@ -6,7 +6,7 @@
 /*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 14:29:25 by mvogel            #+#    #+#             */
-/*   Updated: 2023/03/24 15:46:18 by mvogel           ###   ########lyon.fr   */
+/*   Updated: 2023/03/25 13:09:11 by mvogel           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@ int	main(int argc, char *argv[])
 	int					i;
 
 	sigemptyset(&sign.sa_mask);
-	sigaddset(&sign.sa_mask, SIGUSR1);
-	sigaddset(&sign.sa_mask, SIGUSR2);
 	sign.sa_flags = SA_SIGINFO;
 	sign.sa_handler = confirm_reception;
 	i = 0;
@@ -61,9 +59,8 @@ int	main(int argc, char *argv[])
 		2), 1);
 	pid_server = ft_atoi(argv[1]);
 	sigaction(SIGUSR1, &sign, NULL);
-	sigaction(SIGUSR2, &sign, NULL);	
-	int size = ft_strlen(argv[2]);
-	send_bit(size, pid_server, 32);
+	sigaction(SIGUSR2, &sign, NULL);
+	send_bit(ft_strlen(argv[2]), pid_server, 32);
 	while (argv[2] != NULL && argv[2][i] != 0)
 		send_bit(argv[2][i++], pid_server, 8);
 	send_bit(0, pid_server, 8);

@@ -6,7 +6,7 @@
 /*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 15:00:35 by mvogel            #+#    #+#             */
-/*   Updated: 2023/03/24 15:22:55 by mvogel           ###   ########lyon.fr   */
+/*   Updated: 2023/03/25 13:09:21 by mvogel           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	get_message(t_bit *bit)
 	bit->message[bit->j] = bit->char_value;
 	bit->j++;
 	if (bit->char_value == 0)
-		{
+	{
 		ft_printf("%s", bit->message);
 		free(bit->message);
 		bit->message = NULL;
@@ -80,12 +80,11 @@ int	main(int argc, char **argv)
 {
 	struct sigaction	sign;
 
+	(void) argv;
 	sigemptyset(&sign.sa_mask);
-	sigaddset(&sign.sa_mask, SIGUSR1);
-	sigaddset(&sign.sa_mask, SIGUSR2);
 	sign.sa_flags = SA_SIGINFO;
 	sign.sa_sigaction = get_bit;
-	if (argc != 1 && argv[0][0] != '\0')
+	if (argc != 1)
 		return (ft_putstr_fd("Error\nServer does not take parameters\n", 2), -1);
 	ft_printf("Server PID is : %d\n", getpid());
 	while (1)

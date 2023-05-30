@@ -12,6 +12,6 @@ The main objective of Minitalk is to implement a simple and efficient messaging 
 - Asynchronous operation: The program allows multiple clients to send messages simultaneously, making use of signal handling to manage concurrent communication.
 - Simple and lightweight: Minitalk is designed to be minimalistic and lightweight, with a focus on core functionality and efficiency.
 
-Through the implementation of Minitalk, you will gain practical experience in working with signals, handling interruptions, and designing client-server applications. It provides a solid foundation for understanding IPC mechanisms and serves as a stepping stone for more complex interprocess communication scenarios.
+*Through the implementation of Minitalk, you will gain practical experience in working with signals, handling interruptions, and designing client-server applications. It provides a solid foundation for understanding IPC mechanisms and serves as a stepping stone for more complex interprocess communication scenarios.*
 
 **Note:** This project was developed as part of the 42 school curriculum and should be considered a learning exercise rather than a full-fledged production-grade communication system.
